@@ -1,10 +1,13 @@
 /*
-  AcessoGyn — Pessoa 2 (Lógica)
+  AcessoGyn - Pessoa 2 (Lógica)
   Motivo: um único JavaScript cuida do menu, do formulário e da lista.
   Os relatos ficam no localStorage (sem back-end neste momento).
 */
 
 const CHAVE_STORAGE = "acessogyn_problemas";
+
+// Marcação escolhida no mapa da página Relatar (posição em % da imagem)
+let marcacaoAtual = null;
 
 document.addEventListener("DOMContentLoaded", function () {
   configurarMenu();
@@ -13,9 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
   exibirProblemas();
   exibirMapaProblemas();
 });
-
-// Marcação escolhida no mapa da página Relatar (posição em % da imagem)
-let marcacaoAtual = null;
 
 function configurarMenu() {
   const botaoMenu = document.getElementById("botao-menu");
@@ -64,6 +64,11 @@ function configurarFormulario() {
 
     if (!titulo || !tipo || !bairro || !endereco || !descricao) {
       mostrarMensagem(mensagem, "Preencha todos os campos antes de salvar.", "erro");
+      return;
+    }
+
+    if (!marcacaoAtual) {
+      mostrarMensagem(mensagem, "Marque o local do problema no mapa antes de salvar.", "erro");
       return;
     }
 
@@ -131,7 +136,7 @@ function exibirProblemas() {
       "</div>" +
       '<p class="card-local">' +
       escaparHtml(problema.bairro) +
-      " — " +
+      " \u2014 " +
       escaparHtml(problema.endereco) +
       "</p>" +
       "<p>" +
