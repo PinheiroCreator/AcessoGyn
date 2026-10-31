@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatar problema — AcessoGyn</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="cabecalho">
+      <div class="cabecalho-conteudo">
+        <a class="logo" href="index.html">
+          <span class="logo-marca">Acesso</span><span class="logo-destaque">Gyn</span>
+        </a>
+
+        <button
+          class="botao-menu"
+          id="botao-menu"
+          type="button"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="menu" id="menu-principal">
+          <a class="menu-link" href="index.html">Início</a>
+          <a class="menu-link ativo" href="relatar.html">Relatar problema</a>
+          <a class="menu-link" href="problemas.html">Ver problemas</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="pagina">
+      <h1>Relatar problema</h1>
+      <p class="secao-intro">
+        Preencha os campos para registrar um problema de acessibilidade em Goiânia.
+        Os dados ficam salvos neste navegador.
+      </p>
+
+      <!--
+        IDs usados pela Pessoa 2 em script.js:
+        formulario-relato, campo-titulo, campo-tipo, campo-bairro,
+        campo-endereco, campo-descricao, mensagem-formulario
+      -->
+      <form class="formulario" id="formulario-relato" novalidate>
+        <div class="campo">
+          <label for="campo-titulo">Título</label>
+          <input
+            type="text"
+            id="campo-titulo"
+            name="titulo"
+            maxlength="80"
+            placeholder="Ex.: Rampa danificada na Praça Cívica"
+            required
+          />
+        </div>
+
+        <div class="campo">
+          <label for="campo-tipo">Tipo do problema</label>
+          <select id="campo-tipo" name="tipo" required>
+            <option value="">Selecione</option>
+            <option value="Calçada">Calçada</option>
+            <option value="Rampa">Rampa</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Sinalização">Sinalização</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="campo-bairro">Bairro</label>
+          <input
+            type="text"
+            id="campo-bairro"
+            name="bairro"
+            maxlength="60"
+            placeholder="Ex.: Setor Central"
+            required
+          />
+        </div>
+
+        <div class="campo">
+          <label for="campo-endereco">Endereço ou ponto de referência</label>
+          <input
+            type="text"
+            id="campo-endereco"
+            name="endereco"
+            maxlength="120"
+            placeholder="Ex.: Av. Goiás, em frente ao Teatro Goiânia"
+            required
+          />
+        </div>
+
+        <div class="campo">
+          <label for="campo-descricao">Descrição</label>
+          <textarea
+            id="campo-descricao"
+            name="descricao"
+            rows="5"
+            maxlength="500"
+            placeholder="Explique o que impede o acesso e como isso afeta as pessoas."
+            required
+          ></textarea>
+        </div>
+
+        <p class="mensagem" id="mensagem-formulario" role="status"></p>
+
+        <button class="botao botao-principal" type="submit">Salvar relato</button>
+      </form>
+    </main>
+
+    <footer class="rodape">
+      <p>AcessoGyn — plataforma colaborativa de acessibilidade urbana em Goiânia.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

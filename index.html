@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AcessoGyn — Acessibilidade urbana em Goiânia</title>
+    <!-- Pessoa 1 (Interface): visual compartilhado -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Cabeçalho igual nas 3 páginas -->
+    <header class="cabecalho">
+      <div class="cabecalho-conteudo">
+        <a class="logo" href="index.html">
+          <span class="logo-marca">Acesso</span><span class="logo-destaque">Gyn</span>
+        </a>
+
+        <button
+          class="botao-menu"
+          id="botao-menu"
+          type="button"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="menu" id="menu-principal">
+          <a class="menu-link ativo" href="index.html">Início</a>
+          <a class="menu-link" href="relatar.html">Relatar problema</a>
+          <a class="menu-link" href="problemas.html">Ver problemas</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-texto">
+          <p class="etiqueta">Goiânia, Goiás</p>
+          <h1>Acessibilidade urbana visível para toda a cidade</h1>
+          <p class="hero-descricao">
+            O AcessoGyn é uma plataforma colaborativa para registrar e visualizar
+            problemas de acessibilidade em Goiânia. Calçadas, rampas, transporte
+            e sinalização: cada relato ajuda a cidade a ficar mais inclusiva.
+          </p>
+          <div class="hero-acoes">
+            <a class="botao botao-principal" href="relatar.html">Relatar problema</a>
+            <a class="botao botao-secundario" href="problemas.html">Ver problemas</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao">
+        <h2>Como funciona</h2>
+        <p class="secao-intro">Três passos simples, no próprio navegador.</p>
+
+        <div class="grade-tres">
+          <article class="cartao">
+            <span class="cartao-numero">1</span>
+            <h3>Encontre o local</h3>
+            <p>Informe o bairro e o endereço do trecho com barreira de acessibilidade.</p>
+          </article>
+          <article class="cartao">
+            <span class="cartao-numero">2</span>
+            <h3>Descreva o problema</h3>
+            <p>Escolha o tipo (calçada, rampa, transporte ou sinalização) e explique o que impede o acesso.</p>
+          </article>
+          <article class="cartao">
+            <span class="cartao-numero">3</span>
+            <h3>A cidade visualiza</h3>
+            <p>O relato entra na lista pública do AcessoGyn para qualquer pessoa consultar.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="rodape">
+      <p>AcessoGyn — plataforma colaborativa de acessibilidade urbana em Goiânia.</p>
+    </footer>
+
+    <!-- Pessoa 2 (Lógica): menu mobile neste arquivo -->
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,407 @@
+/*
+  AcessoGyn — Pessoa 1 (Interface)
+  Motivo: um único CSS para as 3 páginas ficarem com a mesma identidade.
+  Cores: azul, verde e branco.
+*/
+
+:root {
+  --azul: #0a4d8c;
+  --azul-escuro: #07365f;
+  --azul-claro: #e8f1fa;
+  --verde: #1fa97a;
+  --verde-escuro: #16825c;
+  --branco: #ffffff;
+  --fundo: #f4f8fb;
+  --texto: #14324a;
+  --texto-suave: #4d6475;
+  --borda: #d5e3ee;
+  --sombra: 0 12px 30px rgba(10, 77, 140, 0.08);
+  --raio: 16px;
+  --largura: 1080px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.cabecalho {
+  background: var(--branco);
+  border-bottom: 1px solid var(--borda);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.cabecalho-conteudo {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.logo-marca {
+  color: var(--azul);
+}
+
+.logo-destaque {
+  color: var(--verde);
+}
+
+.menu {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.menu-link {
+  color: var(--texto-suave);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.menu-link:hover,
+.menu-link.ativo {
+  color: var(--azul);
+}
+
+.botao-menu {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background: var(--branco);
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.botao-menu span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--azul);
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--azul) 0%, #0e6a8c 58%, var(--verde) 130%);
+  color: var(--branco);
+}
+
+.hero-texto {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 4.5rem 1.25rem 4.75rem;
+}
+
+.etiqueta {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.hero h1 {
+  max-width: 16ch;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  margin-bottom: 1rem;
+}
+
+.hero-descricao {
+  max-width: 58ch;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.75rem;
+}
+
+.hero-acoes,
+.campo,
+.formulario {
+  display: flex;
+}
+
+.hero-acoes {
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.85rem 1.35rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.botao-principal {
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.botao-principal:hover {
+  background: var(--verde-escuro);
+}
+
+.botao-secundario {
+  background: var(--branco);
+  color: var(--azul);
+}
+
+.secao,
+.pagina {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 3.5rem 1.25rem;
+}
+
+.secao h2,
+.pagina h1 {
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.secao-intro {
+  color: var(--texto-suave);
+  margin-bottom: 1.75rem;
+  max-width: 60ch;
+}
+
+.grade-tres {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
+}
+
+.cartao,
+.card-problema,
+.formulario {
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+.cartao {
+  padding: 1.4rem;
+}
+
+.cartao-numero {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--azul-claro);
+  color: var(--azul);
+  font-weight: 700;
+  margin-bottom: 0.85rem;
+}
+
+.cartao h3 {
+  margin-bottom: 0.4rem;
+}
+
+.cartao p,
+.card-problema p {
+  color: var(--texto-suave);
+}
+
+.formulario {
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  max-width: 680px;
+}
+
+.campo {
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.campo label {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+  color: var(--texto);
+  background: var(--branco);
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: 2px solid var(--azul);
+  border-color: var(--azul);
+}
+
+.mensagem {
+  min-height: 1.4rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.mensagem.sucesso {
+  color: var(--verde-escuro);
+}
+
+.mensagem.erro {
+  color: #b42318;
+}
+
+.lista-problemas {
+  display: grid;
+  gap: 1rem;
+}
+
+.card-problema {
+  padding: 1.25rem 1.4rem;
+}
+
+.card-topo {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 0.55rem;
+}
+
+.card-problema h2 {
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.etiqueta-tipo {
+  background: var(--azul-claro);
+  color: var(--azul);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.card-local {
+  font-weight: 600;
+  color: var(--azul-escuro);
+  margin-bottom: 0.35rem;
+}
+
+.card-data {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.estado-vazio {
+  background: var(--branco);
+  border: 1px dashed var(--borda);
+  border-radius: var(--raio);
+  padding: 2rem 1.25rem;
+  text-align: center;
+  color: var(--texto-suave);
+}
+
+.rodape {
+  border-top: 1px solid var(--borda);
+  background: var(--branco);
+  color: var(--texto-suave);
+  text-align: center;
+  padding: 1.25rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 800px) {
+  .botao-menu {
+    display: flex;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 68px;
+    right: 1.25rem;
+    left: 1.25rem;
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.6rem;
+    gap: 0;
+    box-shadow: var(--sombra);
+  }
+
+  .menu.aberto {
+    display: flex;
+  }
+
+  .menu-link {
+    padding: 0.75rem;
+    border-radius: 8px;
+  }
+
+  .grade-tres {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-texto,
+  .secao,
+  .pagina {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Problemas — AcessoGyn</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="cabecalho">
+      <div class="cabecalho-conteudo">
+        <a class="logo" href="index.html">
+          <span class="logo-marca">Acesso</span><span class="logo-destaque">Gyn</span>
+        </a>
+
+        <button
+          class="botao-menu"
+          id="botao-menu"
+          type="button"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="menu" id="menu-principal">
+          <a class="menu-link" href="index.html">Início</a>
+          <a class="menu-link" href="relatar.html">Relatar problema</a>
+          <a class="menu-link ativo" href="problemas.html">Ver problemas</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="pagina">
+      <h1>Problemas registrados</h1>
+      <p class="secao-intro">
+        Relatos de acessibilidade urbana em Goiânia salvos neste navegador.
+      </p>
+
+      <!-- Pessoa 2 preenche esta lista com JavaScript -->
+      <section class="lista-problemas" id="lista-problemas"></section>
+    </main>
+
+    <footer class="rodape">
+      <p>AcessoGyn — plataforma colaborativa de acessibilidade urbana em Goiânia.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
