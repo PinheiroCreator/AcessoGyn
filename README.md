@@ -1,4 +1,8 @@
 # ViaAtenta
+<<<<<<< HEAD
+=======
+
+>>>>>>> AcessoGyn/master
 
 Aplicação local para registrar e acompanhar ocorrências de conservação viária em Goiânia.
 
