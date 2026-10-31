@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard &mdash; AcessoGyn</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="cabecalho">
+      <div class="cabecalho-conteudo">
+        <a class="logo" href="index.html">
+          <span class="logo-marca">Acesso</span><span class="logo-destaque">Gyn</span>
+        </a>
+
+        <button
+          class="botao-menu"
+          id="botao-menu"
+          type="button"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="menu" id="menu-principal">
+          <a class="menu-link" href="index.html">Início</a>
+          <a class="menu-link" href="relatar.html">Relatar problema</a>
+          <a class="menu-link" href="problemas.html">Ver problemas</a>
+          <a class="menu-link ativo" href="dashboard.html">Dashboard</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="pagina">
+      <h1>Dashboard</h1>
+      <p class="secao-intro">
+        Estatísticas dos relatos salvos neste navegador. Os números se atualizam
+        a cada novo relato.
+      </p>
+
+      <div id="painel-dashboard">
+        <section class="dash-resumo">
+          <article class="dash-numero">
+            <span class="dash-valor" id="dash-total">0</span>
+            <span class="dash-rotulo">Relatos no total</span>
+          </article>
+          <article class="dash-numero">
+            <span class="dash-valor" id="dash-hoje">0</span>
+            <span class="dash-rotulo">Relatos hoje</span>
+          </article>
+          <article class="dash-numero">
+            <span class="dash-valor" id="dash-semana">0</span>
+            <span class="dash-rotulo">Últimos 7 dias</span>
+          </article>
+          <article class="dash-numero">
+            <span class="dash-valor" id="dash-bairros">0</span>
+            <span class="dash-rotulo">Bairros afetados</span>
+          </article>
+        </section>
+
+        <div class="dash-grade">
+          <section class="dash-bloco">
+            <h2>Relatos por tipo</h2>
+            <div class="dash-barras" id="grafico-tipos"></div>
+          </section>
+
+          <section class="dash-bloco">
+            <h2>Bairros com mais relatos</h2>
+            <div class="dash-barras" id="ranking-bairros"></div>
+          </section>
+
+          <section class="dash-bloco dash-largo">
+            <h2>Relatos nos últimos 7 dias</h2>
+            <div class="dash-barras" id="grafico-dias"></div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="rodape">
+      <p>AcessoGyn &mdash; plataforma colaborativa de acessibilidade urbana em Goiânia.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

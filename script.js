@@ -15,7 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
   configurarMapaRelato();
   exibirProblemas();
   exibirMapaProblemas();
+  exibirDashboard();
 });
+
+// Atualiza o dashboard quando um relato novo é salvo em outra aba ou ao voltar para a página
+window.addEventListener("storage", exibirDashboard);
+window.addEventListener("pageshow", exibirDashboard);
+window.addEventListener("focus", exibirDashboard);
 
 function configurarMenu() {
   const botaoMenu = document.getElementById("botao-menu");
@@ -86,6 +92,7 @@ function configurarFormulario() {
     });
 
     salvarProblemas(listaProblemas);
+    exibirDashboard();
     formulario.reset();
     removerMarcacao();
     mostrarMensagem(mensagem, "Relato salvo. Você já pode vê-lo em Ver problemas.", "sucesso");
@@ -267,4 +274,133 @@ function exibirMapaProblemas() {
 
     mapa.appendChild(pino);
   });
+}
+
+function chaveDoDia(data) {
+  return (
+    data.getFullYear() +
+    "-" +
+    String(data.getMonth() + 1).padStart(2, "0") +
+    "-" +
+    String(data.getDate()).padStart(2, "0")
+  );
+}
+
+function montarBarras(itens, mensagemVazia) {
+  if (itens.length === 0) {
+    return '<p class="dash-vazio">' + mensagemVazia + "</p>";
+  }
+
+  let maior = 0;
+  itens.forEach(function (item) {
+    if (item.valor > maior) {
+      maior = item.valor;
+    }
+  });
+
+  let html = "";
+
+  itens.forEach(function (item) {
+    const largura = maior === 0 ? 0 : (item.valor / maior) * 100;
+
+    html +=
+      '<div class="dash-linha">' +
+      '<span class="dash-linha-nome">' +
+      escaparHtml(item.nome) +
+      "</span>" +
+      '<div class="dash-trilho"><div class="dash-preenchimento" style="width:' +
+      largura +
+      '%"></div></div>' +
+      '<span class="dash-linha-valor">' +
+      item.valor +
+      "</span>" +
+      "</div>";
+  });
+
+  return html;
+}
+
+function exibirDashboard() {
+  const painel = document.getElementById("painel-dashboard");
+
+  if (!painel) {
+    return;
+  }
+
+  const listaProblemas = obterProblemas();
+  const agora = new Date();
+  const hoje = chaveDoDia(agora);
+
+  // Últimos 7 dias (do mais antigo para hoje)
+  const dias = [];
+  for (let i = 6; i >= 0; i -= 1) {
+    const dia = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate() - i);
+    dias.push({
+      chave: chaveDoDia(dia),
+      nome: dia.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" }),
+      valor: 0
+    });
+  }
+
+  const contagemTipos = {};
+  const contagemBairros = {};
+  let totalHoje = 0;
+  let totalSemana = 0;
+
+  listaProblemas.forEach(function (problema) {
+    contagemTipos[problema.tipo] = (contagemTipos[problema.tipo] || 0) + 1;
+
+    const chaveBairro = String(problema.bairro).trim().toLowerCase();
+    if (!contagemBairros[chaveBairro]) {
+      contagemBairros[chaveBairro] = { nome: String(problema.bairro).trim(), valor: 0 };
+    }
+    contagemBairros[chaveBairro].valor += 1;
+
+    const chaveDia = chaveDoDia(new Date(problema.dataIso));
+
+    if (chaveDia === hoje) {
+      totalHoje += 1;
+    }
+
+    dias.forEach(function (dia) {
+      if (dia.chave === chaveDia) {
+        dia.valor += 1;
+        totalSemana += 1;
+      }
+    });
+  });
+
+  const tipos = Object.keys(contagemTipos)
+    .map(function (nome) {
+      return { nome: nome, valor: contagemTipos[nome] };
+    })
+    .sort(function (a, b) {
+      return b.valor - a.valor;
+    });
+
+  const bairros = Object.keys(contagemBairros)
+    .map(function (chave) {
+      return contagemBairros[chave];
+    })
+    .sort(function (a, b) {
+      return b.valor - a.valor;
+    });
+
+  document.getElementById("dash-total").textContent = listaProblemas.length;
+  document.getElementById("dash-hoje").textContent = totalHoje;
+  document.getElementById("dash-semana").textContent = totalSemana;
+  document.getElementById("dash-bairros").textContent = bairros.length;
+
+  document.getElementById("grafico-tipos").innerHTML = montarBarras(
+    tipos,
+    "Nenhum relato registrado ainda."
+  );
+  document.getElementById("ranking-bairros").innerHTML = montarBarras(
+    bairros.slice(0, 5),
+    "Nenhum relato registrado ainda."
+  );
+  document.getElementById("grafico-dias").innerHTML = montarBarras(
+    dias,
+    "Nenhum relato registrado ainda."
+  );
 }

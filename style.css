@@ -472,3 +472,115 @@ img {
 .card-problema.destaque {
   outline: 3px solid var(--verde);
 }
+
+/* Dashboard */
+.dash-resumo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dash-numero {
+  display: flex;
+  flex-direction: column;
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 1.2rem 1.4rem;
+}
+
+.dash-valor {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--azul);
+  letter-spacing: -0.03em;
+}
+
+.dash-rotulo {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  margin-top: 0.35rem;
+}
+
+.dash-grade {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.dash-bloco {
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 1.25rem 1.4rem;
+}
+
+.dash-bloco h2 {
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.9rem;
+}
+
+.dash-largo {
+  grid-column: 1 / -1;
+}
+
+.dash-barras {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.dash-linha {
+  display: grid;
+  grid-template-columns: 110px 1fr 32px;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.dash-linha-nome {
+  color: var(--texto);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dash-trilho {
+  background: var(--azul-claro);
+  border-radius: 999px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.dash-preenchimento {
+  background: var(--verde);
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.dash-linha-valor {
+  text-align: right;
+  font-weight: 700;
+  color: var(--azul);
+}
+
+.dash-vazio {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 800px) {
+  .dash-resumo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dash-grade {
+    grid-template-columns: 1fr;
+  }
+}
