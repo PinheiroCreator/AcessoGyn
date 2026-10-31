@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatar problema viário — ViaAtenta</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="cabecalho"><div class="cabecalho-conteudo">
+      <a class="logo" href="index.html"><span class="logo-marca">Via</span><span class="logo-destaque">Atenta</span></a>
+      <button class="botao-menu" id="botao-menu" type="button" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="menu" id="menu-principal"><a class="menu-link" href="index.html">Início</a><a class="menu-link ativo" href="reports.html">Relatar problema</a><a class="menu-link" href="problemas.html">Fila de ocorrências</a><a class="menu-link" href="dashboard.html">Painel</a></nav>
+    </div></header>
+    <main class="pagina">
+      <p class="etiqueta etiqueta-interna">Portal do cidadão</p>
+      <h1>Relatar problema viário</h1>
+      <p class="secao-intro">Informe um problema observado em uma via de Goiânia. A equipe responsável analisará o relato e definirá o encaminhamento adequado.</p>
+
+      <section class="bloco-secao" aria-labelledby="titulo-exemplos">
+        <h2 id="titulo-exemplos">Exemplos para demonstração</h2>
+        <p class="texto-suave">Os exemplos abaixo são fictícios e não estão na fila oficial. Selecione um para preencher o formulário e demonstrar o fluxo.</p>
+        <div class="grade-campos">
+          <button class="botao botao-terciario exemplo-relato" type="button" data-exemplo="buraco">Exemplo fictício: buraco em via</button>
+          <button class="botao botao-terciario exemplo-relato" type="button" data-exemplo="sinalizacao">Exemplo fictício: sinalização danificada</button>
+          <button class="botao botao-terciario exemplo-relato" type="button" data-exemplo="alagamento">Exemplo fictício: ponto de alagamento</button>
+        </div>
+        <p class="mensagem" id="status-exemplo" role="status"></p>
+      </section>
+
+      <form class="formulario" id="formulario-relato" novalidate>
+        <div class="campo"><label for="campo-titulo">Resumo do problema</label><input id="campo-titulo" name="titulo" maxlength="100" placeholder="Ex.: Buraco próximo à faixa de pedestres" required /></div>
+        <div class="campo"><label for="campo-tipo">Tipo de ocorrência</label><select id="campo-tipo" name="tipo" required><option value="">Selecione</option><option>Buraco / defeito no pavimento</option><option>Trinca ou deformação</option><option>Erosão ou dano no acostamento</option><option>Drenagem / alagamento</option><option>Sinalização danificada ou ausente</option><option>Defensa, ponte ou estrutura</option><option>Obstáculo, árvore caída ou deslizamento</option><option>Outro</option></select></div>
+        <div class="grade-campos">
+          <div class="campo"><label for="campo-rodovia">Rua, avenida ou rodovia</label><input id="campo-rodovia" name="rodovia" maxlength="80" placeholder="Ex.: Avenida T-63" required /></div>
+          <div class="campo"><label for="campo-km">Número, cruzamento ou referência</label><input id="campo-km" name="km" maxlength="50" placeholder="Ex.: próximo ao cruzamento com a Rua 9" required /></div>
+        </div>
+        <div class="campo"><label for="campo-descricao">Descrição</label><textarea id="campo-descricao" name="descricao" rows="4" maxlength="700" placeholder="Descreva o que observou e informe o sentido da via, se souber." required></textarea></div>
+        <div class="campo"><label for="campo-foto">Foto do local (opcional)</label><input id="campo-foto" name="foto" type="file" accept="image/*" capture="environment" /><small>A imagem será reduzida e armazenada no computador que executa o sistema.</small></div>
+        <div class="campo"><label for="campo-gps">Localização do problema</label><div class="linha-gps"><input id="campo-gps" name="gps" placeholder="Latitude, longitude" autocomplete="off" required /><button class="botao botao-terciario" id="botao-gps" type="button">Obter minha localização</button></div><p id="status-localizacao" class="mensagem" role="status"></p><small>Use o GPS no local do problema ou informe as coordenadas manualmente. O sistema só registra pontos dentro de Goiânia.</small></div>
+        <p class="nota-privacidade">A localização é usada para confirmar o município. A cobertura de câmeras e o órgão responsável são verificados pela equipe durante a triagem. O registro fica no banco de dados local deste computador.</p>
+        <p class="mensagem" id="mensagem-formulario" role="status"></p>
+        <button class="botao botao-principal" type="submit">Enviar relato para validação</button>
+      </form>
+    </main>
+    <footer class="rodape"><p>ViaAtenta — registro local de problemas viários em Goiânia.</p></footer>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -3,86 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AcessoGyn — Acessibilidade urbana em Goiânia</title>
-    <!-- Pessoa 1 (Interface): visual compartilhado -->
+    <meta name="theme-color" content="#0a4d8c" />
+    <title>ViaAtenta — Gestão de ocorrências viárias</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Cabeçalho igual nas 3 páginas -->
     <header class="cabecalho">
       <div class="cabecalho-conteudo">
-        <a class="logo" href="index.html">
-          <span class="logo-marca">Acesso</span><span class="logo-destaque">Gyn</span>
-        </a>
-
-        <button
-          class="botao-menu"
-          id="botao-menu"
-          type="button"
-          aria-label="Abrir menu"
-          aria-expanded="false"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
+        <a class="logo" href="index.html"><span class="logo-marca">Via</span><span class="logo-destaque">Atenta</span></a>
+        <button class="botao-menu" id="botao-menu" type="button" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
         <nav class="menu" id="menu-principal">
           <a class="menu-link ativo" href="index.html">Início</a>
-          <a class="menu-link" href="relatar.html">Relatar problema</a>
-          <a class="menu-link" href="problemas.html">Ver problemas</a>
-          <a class="menu-link" href="dashboard.html">Dashboard</a>
+          <a class="menu-link" href="reports.html">Relatar problema</a>
+          <a class="menu-link" href="problemas.html">Fila de ocorrências</a>
+          <a class="menu-link" href="dashboard.html">Painel</a>
         </nav>
       </div>
     </header>
-
     <main>
       <section class="hero">
         <div class="hero-texto">
-          <p class="etiqueta">Goiânia, Goiás</p>
-          <h1>Acessibilidade urbana visível para toda a cidade</h1>
-          <p class="hero-descricao">
-            O AcessoGyn é uma plataforma colaborativa para registrar e visualizar
-            problemas de acessibilidade em Goiânia. Calçadas, rampas, transporte
-            e sinalização: cada relato ajuda a cidade a ficar mais inclusiva.
-          </p>
+          <p class="etiqueta">Goiânia · operação por trechos</p>
+          <h1>Enxergue os problemas da via, mesmo onde não há câmera.</h1>
+          <p class="hero-descricao">A ViaAtenta reúne registros de cidadãos, equipes de campo, veículos de inspeção e sistemas de monitoramento para organizar a conservação viária em Goiânia.</p>
           <div class="hero-acoes">
-            <a class="botao botao-principal" href="relatar.html">Relatar problema</a>
-            <a class="botao botao-secundario" href="problemas.html">Ver problemas</a>
+            <a class="botao botao-principal" href="reports.html">Relatar problema</a>
+            <a class="botao botao-secundario" href="problemas.html">Abrir fila interna</a>
           </div>
+          <p class="aviso-prototipo">Aplicação local: os registros permanecem no banco instalado neste computador.</p>
         </div>
       </section>
-
       <section class="secao">
-        <h2>Como funciona</h2>
-        <p class="secao-intro">Três passos simples, no próprio navegador.</p>
-
+        <h2>Um fluxo para agir sem alarmar a cidade inteira</h2>
+        <p class="secao-intro">Cada ocorrência fica ligada a um trecho e passa por triagem antes de virar serviço ou aviso público.</p>
         <div class="grade-tres">
-          <article class="cartao">
-            <span class="cartao-numero">1</span>
-            <h3>Encontre o local</h3>
-            <p>Informe o bairro e o endereço do trecho com barreira de acessibilidade.</p>
-          </article>
-          <article class="cartao">
-            <span class="cartao-numero">2</span>
-            <h3>Descreva o problema</h3>
-            <p>Escolha o tipo (calçada, rampa, transporte ou sinalização) e explique o que impede o acesso.</p>
-          </article>
-          <article class="cartao">
-            <span class="cartao-numero">3</span>
-            <h3>A cidade visualiza</h3>
-            <p>O relato entra na lista pública do AcessoGyn para qualquer pessoa consultar.</p>
-          </article>
+          <article class="cartao"><span class="cartao-numero">1</span><h3>Coletar em qualquer trecho</h3><p>Registre por equipe, frota, contratada ou cidadão. Sem câmera, o trecho pode ser documentado por celular, GPS e foto quando alguém passa por ele.</p></article>
+          <article class="cartao"><span class="cartao-numero">2</span><h3>Validar e priorizar</h3><p>A fila agrupa problemas por rodovia, município e quilômetro. A sugestão automática apoia a análise; a equipe confirma a prioridade.</p></article>
+          <article class="cartao"><span class="cartao-numero">3</span><h3>Acompanhar o reparo</h3><p>Atualize o status do registro e acompanhe o atendimento. Alertas ao público ficam separados e dependem de confirmação humana.</p></article>
         </div>
+      </section>
+      <section class="secao faixa-info">
+        <div><p class="etiqueta etiqueta-clara">Escopo desta versão</p><h2>Registros dentro de Goiânia</h2><p>Este protótipo confere as coordenadas do ponto da ocorrência contra o limite municipal de Goiânia. Registros localizados em outros municípios são recusados.</p></div>
+        <a class="botao botao-principal" href="dashboard.html">Ver painel operacional</a>
       </section>
     </main>
-
-    <footer class="rodape">
-      <p>AcessoGyn — plataforma colaborativa de acessibilidade urbana em Goiânia.</p>
-    </footer>
-
-    
+    <footer class="rodape"><p>ViaAtenta — protótipo de gestão colaborativa de ocorrências viárias.</p></footer>
     <script src="script.js"></script>
-
   </body>
 </html>

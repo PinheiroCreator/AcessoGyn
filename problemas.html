@@ -1,57 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Problemas &mdash; AcessoGyn</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Fila de ocorrências — ViaAtenta</title><link rel="stylesheet" href="style.css" /></head>
   <body>
-    <header class="cabecalho">
-      <div class="cabecalho-conteudo">
-        <a class="logo" href="index.html">
-          <span class="logo-marca">Acesso</span><span class="logo-destaque">Gyn</span>
-        </a>
-
-        <button
-          class="botao-menu"
-          id="botao-menu"
-          type="button"
-          aria-label="Abrir menu"
-          aria-expanded="false"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <nav class="menu" id="menu-principal">
-          <a class="menu-link" href="index.html">Início</a>
-          <a class="menu-link" href="relatar.html">Relatar problema</a>
-          <a class="menu-link ativo" href="problemas.html">Ver problemas</a>
-          <a class="menu-link" href="dashboard.html">Dashboard</a>
-        </nav>
-      </div>
-    </header>
-
+    <header class="cabecalho"><div class="cabecalho-conteudo"><a class="logo" href="index.html"><span class="logo-marca">Via</span><span class="logo-destaque">Atenta</span></a><button class="botao-menu" id="botao-menu" type="button" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button><nav class="menu" id="menu-principal"><a class="menu-link" href="index.html">Início</a><a class="menu-link" href="reports.html">Relatar problema</a><a class="menu-link ativo" href="problemas.html">Fila de ocorrências</a><a class="menu-link" href="dashboard.html">Painel</a></nav></div></header>
     <main class="pagina">
-      <h1>Problemas registrados</h1>
-      <p class="secao-intro">
-        Relatos de acessibilidade urbana em Goiânia salvos neste navegador.
-      </p>
-
-      <div class="mapa" id="mapa-problemas">
-        <img src="assets/images/mapa-goiania.png" alt="Mapa de Goiânia com os problemas registrados" draggable="false" />
-      </div>
-
-      <!-- Pessoa 2 preenche esta lista com JavaScript -->
-      <section class="lista-problemas" id="lista-problemas"></section>
+      <p class="etiqueta etiqueta-interna">Uso operacional · demonstração local</p>
+      <h1>Fila de ocorrências</h1>
+      <p class="secao-intro">Revise os registros por trecho. Atualizar o status aqui simula o fluxo de triagem; não abre ordem de serviço nem envia avisos externos.</p>
+      <section class="filtros" aria-label="Filtros da fila">
+        <div class="campo"><label for="filtro-busca">Buscar trecho, rodovia ou tipo</label><input id="filtro-busca" type="search" placeholder="Ex.: GO-020, Goiânia, buraco" /></div>
+        <div class="campo"><label for="filtro-status">Status</label><select id="filtro-status"><option value="todos">Todos</option><option value="Recebida">Recebida</option><option value="Em triagem">Em triagem</option><option value="Confirmada">Confirmada</option><option value="Em atendimento">Em atendimento</option><option value="Concluída">Concluída</option></select></div>
+        <div class="campo"><label for="filtro-municipio">Município</label><input id="filtro-municipio" type="search" placeholder="Todos os municípios" /></div>
+      </section>
+      <p class="mensagem" id="aviso-dados-locais" role="status">Os registros são carregados do banco local deste computador.</p>
+      <section class="lista-problemas" id="lista-problemas" aria-live="polite"></section>
     </main>
-
-    <footer class="rodape">
-      <p>AcessoGyn &mdash; plataforma colaborativa de acessibilidade urbana em Goiânia.</p>
-    </footer>
-
+    <footer class="rodape"><p>ViaAtenta — validação humana antes de priorizar serviços ou avisar a população.</p></footer>
     <script src="script.js"></script>
   </body>
 </html>

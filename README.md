@@ -1,51 +1,46 @@
-# AcessoGyn
+# ViaAtenta
 
-Plataforma colaborativa para registrar e visualizar problemas de acessibilidade urbana em Goiânia, Goiás.
+Aplicação local para registrar e acompanhar ocorrências de conservação viária em Goiânia.
 
-Somente HTML, CSS e JavaScript puro. Sem back-end nesta fase: os relatos ficam salvos no navegador (`localStorage`).
+## Executar
 
-## Como abrir
+1. Instale Python 3.10 ou superior.
+2. Instale o Ollama e baixe uma vez o modelo local usado pelo validador: `ollama pull gemma3:1b`.
+3. No terminal, entre na pasta `backend` e instale as dependências:
 
-Abra `index.html` no navegador (duplo clique ou “Open with Live Server”).
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-## Divisão da equipe (2 pessoas)
+No Windows PowerShell, ative com `.venv\Scripts\Activate.ps1`.
 
-### Pessoa 1 — Interface
+4. Inicie o Ollama local e execute:
 
-Arquivos:
+```bash
+python app.py
+```
 
-- `index.html`
-- `relatar.html`
-- `problemas.html`
-- `style.css`
-- `assets/images/` e `assets/icons/` (quando houver imagens)
+5. Abra `http://127.0.0.1:5000` no navegador.
 
-Responsável por: textos, estrutura das páginas, cores, layout e versão no celular.
+Após instalar as dependências e o modelo, o uso da aplicação não depende de serviços externos. O polígono municipal está incluído em `backend/data/limite-goiania.geojson`; a verificação geográfica e o banco SQLite são executados no próprio computador.
 
-### Pessoa 2 — Lógica
+## Portal do cidadão
 
-Arquivo:
-
-- `script.js`
-
-Responsável por: menu no celular, validação do formulário, salvar/ler relatos e montar a lista.
-
-Combinado entre as duas pessoas: **não mudar os `id` dos campos** (`botao-menu`, `menu-principal`, `formulario-relato`, `campo-titulo`, `campo-tipo`, `campo-bairro`, `campo-endereco`, `campo-descricao`, `mensagem-formulario`, `lista-problemas`). O JavaScript depende desses nomes.
-
-## O que cada arquivo faz
-
-| Arquivo | Função |
-|---|---|
-| `index.html` | Página inicial: apresentação e botões para relatar ou ver problemas. |
-| `relatar.html` | Formulário para cadastrar um problema. |
-| `problemas.html` | Lista dos problemas salvos neste navegador. |
-| `style.css` | Visual (azul, verde e branco) e layout responsivo. |
-| `script.js` | Menu, gravação dos relatos e exibição da lista. |
-| `assets/` | Pasta para imagens e ícones. |
-| `.gitignore` | Arquivos que o Git não deve versionar. |
+A página `reports.html` permite que o cidadão registre um problema viário sem escolher órgão responsável ou cobertura de câmeras. A equipe confirma essas informações durante a triagem. A página também inclui exemplos fictícios para demonstração; eles não aparecem na fila até que alguém valide e envie o formulário.
 
 ## Fluxo
 
-1. A pessoa abre `index.html`.
-2. Em `relatar.html`, preenche o formulário. O JavaScript grava o relato no navegador.
-3. Em `problemas.html`, o JavaScript lê esses relatos e mostra os cards.
+- O usuário informa o trecho e as coordenadas do ponto da ocorrência ou permite a leitura pelo GPS.
+- O servidor confere se o ponto está dentro do limite municipal de Goiânia. Um ponto fora do município não pode ser registrado.
+- O validador local analisa o texto e classifica o tipo e a prioridade sugerida. Se o texto não descrever um problema viário suficiente, o envio é recusado.
+- O registro aprovado é salvo em `backend/data/viaatenta.sqlite3` e aparece na fila local, mesmo após fechar e reabrir a aplicação.
+- A equipe pode atualizar o status. Um aviso só pode ser preparado como rascunho após confirmar a ocorrência; nenhum aviso externo é enviado.
+
+## Limites desta versão
+
+- A área aceita é Goiânia. O arquivo de limite incluído é uma geometria municipal simplificada do IBGE, código 5208707.
+- O banco SQLite fica no computador onde o servidor está instalado. A aplicação não oferece sincronização entre computadores nem controle de contas.
+- O serviço de validação de texto usa o modelo instalado localmente no Ollama. Se ele estiver parado ou o modelo não estiver instalado, o registro não será salvo.
+- Não há conexão com câmeras, sistemas da GOINFRA, prefeitura, ordens de serviço ou publicação de avisos.
