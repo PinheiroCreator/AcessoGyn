@@ -7,16 +7,19 @@
 const CHAVE_STORAGE = "acessogyn_problemas";
 
 // Marcação escolhida no mapa da página Relatar (posição em % da imagem)
-let marcacaoAtual = null;
+let analiseIAAtual = null;
+
 
 document.addEventListener("DOMContentLoaded", function () {
   configurarMenu();
   configurarFormulario();
   configurarMapaRelato();
+  configurarAnaliseIA();
   exibirProblemas();
   exibirMapaProblemas();
   exibirDashboard();
 });
+
 
 // Atualiza o dashboard quando um relato novo é salvo em outra aba ou ao voltar para a página
 window.addEventListener("storage", exibirDashboard);
@@ -88,10 +91,15 @@ function configurarFormulario() {
       endereco: endereco,
       descricao: descricao,
       marcacao: marcacaoAtual,
+    
+      analiseIA: analiseIAAtual,
+    
       dataIso: new Date().toISOString()
     });
 
+
     salvarProblemas(listaProblemas);
+    analiseIAAtual = null;
     exibirDashboard();
     formulario.reset();
     removerMarcacao();
@@ -107,6 +115,7 @@ function mostrarMensagem(elemento, texto, tipo) {
   elemento.textContent = texto;
   elemento.className = "mensagem " + tipo;
 }
+
 
 function exibirProblemas() {
   const listaNaTela = document.getElementById("lista-problemas");
@@ -129,6 +138,28 @@ function exibirProblemas() {
     const problema = listaProblemas[indice];
     const dataFormatada = formatarData(problema.dataIso);
 
+    let blocoIA = "";
+
+    if (problema.analiseIA) {
+      blocoIA =
+        '<div class="analise-ia">' +
+          '<h3>✨ Análise da inteligência artificial</h3>' +
+          '<p><strong>Categoria sugerida:</strong> ' +
+          escaparHtml(problema.analiseIA.categoria || "Não informada") +
+          '</p>' +
+          '<p><strong>Prioridade sugerida:</strong> ' +
+          escaparHtml(problema.analiseIA.prioridade || "Não informada") +
+          '</p>' +
+          '<p><strong>Descrição organizada:</strong> ' +
+          escaparHtml(problema.analiseIA.descricao_organizada || "Não informada") +
+          '</p>' +
+          '<p><strong>Justificativa:</strong> ' +
+          escaparHtml(problema.analiseIA.justificativa || "Não informada") +
+          '</p>' +
+          '<small>Esta análise é uma sugestão gerada por IA, não uma avaliação técnica oficial.</small>' +
+        '</div>';
+    }
+
     htmlDosCards +=
       '<article class="card-problema" id="problema-' +
       problema.id +
@@ -143,12 +174,13 @@ function exibirProblemas() {
       "</div>" +
       '<p class="card-local">' +
       escaparHtml(problema.bairro) +
-      " \u2014 " +
+      " — " +
       escaparHtml(problema.endereco) +
       "</p>" +
       "<p>" +
       escaparHtml(problema.descricao) +
       "</p>" +
+      blocoIA +
       '<p class="card-data">Registrado em ' +
       dataFormatada +
       "</p>" +
@@ -157,6 +189,7 @@ function exibirProblemas() {
 
   listaNaTela.innerHTML = htmlDosCards;
 }
+
 
 function formatarData(dataIso) {
   const data = new Date(dataIso);
@@ -403,4 +436,107 @@ function exibirDashboard() {
     dias,
     "Nenhum relato registrado ainda."
   );
+}
+
+
+function configurarAnaliseIA() {
+  const botao = document.getElementById("botao-analisar-ia");
+
+  if (!botao) {
+    return;
+  }
+
+  botao.addEventListener("click", async function () {
+    const campoDescricao = document.getElementById("campo-descricao");
+    const status = document.getElementById("status-ia");
+    const resultado = document.getElementById("resultado-ia");
+    const descricao = campoDescricao.value.trim();
+
+    if (descricao.length < 15) {
+      mostrarMensagem(
+        status,
+        "Escreva pelo menos 15 caracteres para analisar.",
+        "erro"
+      );
+      return;
+    }
+
+    botao.disabled = true;
+    botao.textContent = "Analisando...";
+    resultado.hidden = true;
+
+    mostrarMensagem(
+      status,
+      "A inteligência artificial está analisando seu relato...",
+      "sucesso"
+    );
+
+    try {
+      const resposta = await fetch(
+        "http://127.0.0.1:5000/api/analisar",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            descricao: descricao
+          })
+        }
+      );
+
+      const dados = await resposta.json();
+      analiseIAAtual = dados;
+
+      if (!resposta.ok) {
+        throw new Error(
+          dados.erro || "Não foi possível analisar o relato."
+        );
+      }
+
+      document.getElementById("ia-categoria").textContent =
+        "Categoria sugerida: " + dados.categoria;
+
+      document.getElementById("ia-prioridade").textContent =
+        "Prioridade sugerida: " + dados.prioridade;
+
+      document.getElementById("ia-descricao").textContent =
+        "Descrição organizada: " + dados.descricao_organizada;
+
+      document.getElementById("ia-justificativa").textContent =
+        "Justificativa: " + dados.justificativa;
+
+      resultado.hidden = false;
+
+      mostrarMensagem(
+        status,
+        "Análise concluída! Confira as sugestões.",
+        "sucesso"
+      );
+
+      document.getElementById("botao-aplicar-ia").onclick = function () {
+        document.getElementById("campo-tipo").value =
+          dados.categoria;
+
+        campoDescricao.value = dados.descricao_organizada;
+
+        mostrarMensagem(
+          status,
+          "Sugestões aplicadas! Confira os campos antes de salvar.",
+          "sucesso"
+        );
+      };
+
+    } catch (erro) {
+      mostrarMensagem(
+        status,
+        erro.message || "Erro ao conectar com a inteligência artificial.",
+        "erro"
+      );
+
+    } finally {
+      botao.disabled = false;
+      botao.textContent = " Analisar com IA";
+    }
+  });
 }

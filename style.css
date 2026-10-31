@@ -584,3 +584,29 @@ img {
     grid-template-columns: 1fr;
   }
 }
+
+
+.analise-ia {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid #b8c9e8;
+  border-radius: 12px;
+  background: #f3f7ff;
+}
+
+.analise-ia h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.analise-ia p {
+  margin: 8px 0;
+}
+
+.analise-ia small {
+  display: block;
+  margin-top: 12px;
+  color: #555;
+  line-height: 1.5;
+}
+

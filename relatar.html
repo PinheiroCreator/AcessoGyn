@@ -96,6 +96,7 @@
           />
         </div>
 
+       
         <div class="campo">
           <label for="campo-descricao">Descrição</label>
           <textarea
@@ -107,6 +108,37 @@
             required
           ></textarea>
         </div>
+
+        <!-- Inteligência artificial do AcessoGyn -->
+        <div class="campo">
+          <button
+            class="botao botao-secundario"
+            type="button"
+            id="botao-analisar-ia"
+          >
+            ✨ Analisar com IA
+          </button>
+
+          <p id="status-ia" class="mensagem" role="status"></p>
+
+          <div id="resultado-ia" hidden>
+            <h3>Sugestões da inteligência artificial</h3>
+
+            <p id="ia-categoria"></p>
+            <p id="ia-prioridade"></p>
+            <p id="ia-descricao"></p>
+            <p id="ia-justificativa"></p>
+
+            <button
+              class="botao botao-principal"
+              type="button"
+              id="botao-aplicar-ia"
+            >
+              Aplicar sugestões
+            </button>
+          </div>
+        </div>
+
 
         <div class="campo">
           <label>Local no mapa (obrigatório: clique para marcar onde está o problema)</label>
