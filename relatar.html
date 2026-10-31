@@ -106,6 +106,17 @@
           ></textarea>
         </div>
 
+        <div class="campo">
+          <label>Local no mapa (clique para marcar onde está o problema)</label>
+          <div class="mapa" id="mapa-relato">
+            <img src="assets/images/mapa-goiania.png" alt="Mapa de Goiânia" draggable="false" />
+          </div>
+          <div class="mapa-acoes">
+            <span class="mapa-status" id="mapa-status">Nenhum local marcado.</span>
+            <button class="botao botao-secundario" type="button" id="botao-limpar-marcacao">Remover marcação</button>
+          </div>
+        </div>
+
         <p class="mensagem" id="mensagem-formulario" role="status"></p>
 
         <button class="botao botao-principal" type="submit">Salvar relato</button>

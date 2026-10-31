@@ -405,3 +405,70 @@ img {
     padding-bottom: 2.5rem;
   }
 }
+
+/* Mapa com marcação de problemas */
+.mapa {
+  position: relative;
+  width: 100%;
+  max-width: var(--largura);
+  margin: 0 auto 1rem;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  overflow: hidden;
+  background: var(--branco);
+  line-height: 0;
+}
+
+#mapa-relato {
+  cursor: crosshair;
+  margin-bottom: 0.5rem;
+}
+
+.mapa img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.mapa-acoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.mapa-status {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+.pino {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background: #d62f2f;
+  border: 2px solid var(--branco);
+  border-radius: 50% 50% 50% 0;
+  transform: translate(-50%, -100%) rotate(-45deg);
+  transform-origin: 50% 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+.pino::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 10px;
+  height: 10px;
+  background: var(--branco);
+  border-radius: 50%;
+}
+
+.card-problema.destaque {
+  outline: 3px solid var(--verde);
+}
